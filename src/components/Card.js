@@ -10,20 +10,26 @@ import {
 import { grey } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-export default function Card({ serie }) {
-  const [value, setValue] = useState(0);
+export default function Card({ serie, series, setSeries }) {
+
+  function handleLikes(e, newValue) {
+    let newSeries = [...series];
+    let index = newSeries.indexOf(serie);
+    console.log(index)
+    newSeries[index].likes = newValue;
+    setSeries(newSeries);
+  }
 
   return (
     <MaterialCard
-      elevation={5}
+      elevation={7}
       sx={{
-        height: 470,
-        width: 280,
+        height: 500,
+        width: 300,
         padding: 1,
         boxSizing: "border-box",
         bgcolor: grey[300],
-        position:"relative"
-
+        position: "relative",
       }}
     >
       <CardMedia sx={{ pt: 1 }}>
@@ -31,21 +37,20 @@ export default function Card({ serie }) {
           src={serie.img}
           height="250px"
           width="90%"
-          style={{ borderRadius: "5px" }}
+          style={{ borderRadius: 11 }}
         />
       </CardMedia>
       <CardContent
         sx={{
           paddingTop: 0.5,
-          // display:"flex",
-          // flexDirection:"column",
-          // alignItems:"center",
-          // justifyContent:"space-between",
-          // height:"170px"
         }}
       >
         <Box>
-          <Typography variant="h6" component="div" sx={{ lineHeight: "24px", pt:1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ lineHeight: "24px", pt: 1 }}
+          >
             {serie.title}
           </Typography>
           <Typography variant="body2" color="text.secondary" gutterBottom>
@@ -59,17 +64,15 @@ export default function Card({ serie }) {
           sx={{
             color: "#ff6d75",
             "& .MuiRating-iconHover": { color: "#ff3d47" },
-            position:"absolute",
-            bottom:"7px",
-            right:"79px"
+            position: "absolute",
+            bottom: "7px",
+            right: "90px",
           }}
           name="rating"
           precision={0.5}
           size="large"
-          value={value}
-          onChange={(e, newValue) => {
-            setValue(newValue);
-          }}
+          value={serie.likes}
+          onChange={handleLikes}
           icon={<FavoriteIcon />}
           emptyIcon={<FavoriteIcon />}
         />

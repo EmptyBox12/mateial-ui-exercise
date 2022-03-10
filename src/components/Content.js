@@ -2,7 +2,7 @@ import { Container, Grid } from "@mui/material";
 import React from "react";
 import Card from "./Card";
 
-export default function Content({ series, filter }) {
+export default function Content({ series, filter, setSeries }) {
   return (
     <Container>
       <Grid
@@ -11,7 +11,8 @@ export default function Content({ series, filter }) {
         sx={{
           paddingTop: 2,
           width: "100%",
-          mb:2
+          mb:2,
+          ml:1
         }}
       >
         {series
@@ -21,7 +22,7 @@ export default function Content({ series, filter }) {
         .map((serie) => {
           return (
             <Grid item xs = {12} md = {6} lg = {4}>
-              <Card serie={serie} />
+              <Card serie={serie} series = {series} setSeries = {setSeries} />
             </Grid>
           );
         })}

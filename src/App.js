@@ -14,12 +14,11 @@ import {
 } from "@mui/material";
 import Content from "./components/Content";
 import Right from "./components/Right";
-import Left from "./components/Left";
 import { useState } from "react";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import InboxIcon from "@mui/icons-material/Inbox";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { red } from '@mui/material/colors';
+import { red } from "@mui/material/colors";
 
 function App() {
   const [filter, setFilter] = useState("");
@@ -30,30 +29,54 @@ function App() {
       title: "Beneath the Dragoneye Moons",
       author: "Selkie",
       desc: "Elaine is ripped from this world to Pallos.",
+      trending: 2,
+      views: 200,
+      likes: 0
     },
     {
       img: "/images/wandering.jpg",
       title: "The Wandering Inn",
       author: "Pirateaba",
       desc: "The Wandering is a serie about a girl called Erin written by pirateaba",
+      trending: 1,
+      views: 40,
+      likes: 0
     },
     {
-      img: "/images/wandering.jpg",
-      title: "The Wandering Inn",
-      author: "Pirateaba",
-      desc: "The Wandering is a serie about a girl called Erin written by pirateaba",
+      img: "/images/mother.jpg",
+      title: "Mother of Learning",
+      author: "nobody103",
+      desc: "Repetition is the mother of learning, but Zorian will have to first make sure he survives to try again - in a world of magic",
+      trending: 3,
+      views: 90,
+      likes: 0
     },
     {
-      img: "/images/wandering.jpg",
-      title: "The Wandering Inn",
-      author: "Pirateaba",
-      desc: "The Wandering is a serie about a girl called Erin written by pirateaba",
+      img: "/images/chicken.jpg",
+      title: "Beware Of Chicken",
+      author: "Casualfarmer",
+      desc: "Jin Rou wanted to be a cultivator who defied the heavens, and surpassed all limits.",
+      trending: 4,
+      views: 170,
+      likes: 0
     },
     {
-      img: "/images/wandering.jpg",
-      title: "The Wandering Inn",
-      author: "Pirateaba",
-      desc: "The Wandering is a serie about a girl called Erin written by pirateaba",
+      img: "/images/goblin.jpg",
+      title: "The Iron Teeth: A Goblin's Tale",
+      author: "ClearMadness",
+      desc: "A new, darker age is dawning. The greed of kings has ignited a seemingly endless war.",
+      trending: 5,
+      views: 56,
+      likes: 0
+    },
+    {
+      img: "/images/blue.jpg",
+      title: "Blue Core",
+      author: "InadvisablyCompelled",
+      desc: "Dungeon: A place full of monsters, traps, treasure, and death.",
+      trending: 6,
+      views: 110,
+      likes: 0
     },
   ]);
   return (
@@ -67,8 +90,13 @@ function App() {
         }}
       >
         <List sx={{ width: "250px", bgcolor: "#f5f5f5", height: "100%" }}>
-          <IconButton  onClick={()=> {setDrawer(false)}} sx={{ position: "absolute", right: "7px", top: "7px" }}>
-            <CancelIcon sx = {{fontSize:25, color: red[400]}}  />
+          <IconButton
+            onClick={() => {
+              setDrawer(false);
+            }}
+            sx={{ position: "absolute", right: "7px", top: "7px" }}
+          >
+            <CancelIcon sx={{ fontSize: 25, color: red[400] }} />
           </IconButton>
           <Typography variant="h5" sx={{ pl: 2, pb: 1, pt: 2 }}>
             Title
@@ -92,14 +120,11 @@ function App() {
         </List>
       </Drawer>
       <Grid container>
-        <Grid item xs={2}>
-          <Left />
+        <Grid item xs={9}>
+          <Content series={series} filter={filter} setSeries = {setSeries} />
         </Grid>
-        <Grid item xs={8}>
-          <Content series={series} filter={filter} />
-        </Grid>
-        <Grid item xs={2}>
-          <Right />
+        <Grid item xs={3}>
+          <Right series = {series} />
         </Grid>
       </Grid>
     </div>
